@@ -1,0 +1,86 @@
+main {
+    background: transparent;
+    width: 100%;
+    padding: 50px 100px;
+
+    & form {
+        width: 700px;
+        background-color: rgba(32, 24, 51, 0.8);
+        padding: 6rem 5rem 4rem;
+        font-size: 1.6rem;
+        border-radius: 0.5rem;
+        margin: 0 auto;
+
+        // & > .field {
+        //     margin-bottom: 1.5rem;
+            
+        //     & > .label {
+        //         color: white;
+        //         font-weight: 400;
+        //     }
+
+        //     & .form-control {
+        //         padding-top: 8px;
+        //         padding-bottom: 8px;
+
+        //         &.ng-invalid.ng-touched {
+        //             border: 1.5px solid red;
+        //         }
+        //     }
+
+        //     & .dropdown {
+        //         padding-top: 8px;
+        //         padding-bottom: 8px;
+
+        //         &.ng-invalid.ng-touched {
+        //             border: 1.5px solid red;
+        //         }
+        //     }
+        // }
+
+
+        & .button-line {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 0;
+
+            & button {
+                font-size: 1.6rem;
+                padding: 1rem 3rem;
+                background: #4BB543;
+                color: white;
+            }
+        }
+
+        // option {
+        //     width: 100%;
+        // }    
+    }
+
+    @media only screen and (max-width: 1024px) {
+        padding: 50px;
+
+        & form {
+            width: 600px;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        padding: 50px 30px;
+
+        & form {
+            width: 400px;
+            padding: 5rem 2rem 4rem;
+        }
+    }
+
+    @media only screen and (max-width: 475px) {
+        padding: 50px 16px;
+
+        & form {
+            width: 600px;
+            padding: 5rem 1rem 4rem;
+        }
+    }
+}

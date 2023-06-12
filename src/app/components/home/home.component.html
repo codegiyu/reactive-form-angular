@@ -1,0 +1,215 @@
+<main>
+    <form class="ui form" [formGroup]="testForm" (submit)="submitForm()" novalidate>
+        <div class="field inverted">
+            <span class="label">First Name</span>
+            <div class="field">
+                <input 
+                    formControlName="firstName"
+                    required 
+                    type="text" 
+                    name="firstName"
+                    id="firstName"
+                    placeholder="First Name" 
+                    class="form-control"
+                >
+                <div *ngIf="firstName?.touched && firstName?.errors" class="error-line">
+                    <span 
+                        *ngIf="firstName && firstName?.touched && firstName.errors && firstName.errors['required']" 
+                        class="ui pointing red basic label"
+                    >
+                        First name is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <span class="label">Last Name</span>
+            <div class="field">
+                <input 
+                    formControlName="lastName"
+                    required 
+                    type="text" 
+                    name="lastName" 
+                    id="lastName" 
+                    placeholder="Last Name" 
+                    class="form-control"
+                >
+                <div *ngIf="lastName?.touched && lastName?.errors" class="error-line">
+                    <span 
+                        *ngIf="lastName && lastName?.touched && lastName.errors && lastName.errors['required']" 
+                        class="ui pointing red basic label"
+                    >
+                        Last name is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <span class="label">Email</span>
+            <div class="field">
+                <input 
+                    formControlName="email"
+                    required
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    placeholder="Email"
+                    class="form-control"
+                >
+                <div *ngIf="email?.touched && email?.errors" class="error-line">
+                    <span 
+                        *ngIf="email && email?.touched && email.errors && email.errors['email']" 
+                        class="ui pointing red basic label"
+                    >
+                        Email address is invalid
+                    </span>
+                    <span 
+                        *ngIf="email && email?.touched && email.errors && email.errors['required']" 
+                        class="ui pointing red basic label"
+                    >
+                        Email address is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <span class="label">Password</span>
+            <div class="field">
+                <input 
+                    formControlName="password" 
+                    minLength="8"
+                    required
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    placeholder="********" 
+                    class="form-control"
+                >
+                <div *ngIf="password?.touched && password?.errors" class="error-line">
+                    <span 
+                        *ngIf="password && password?.touched && password.errors && password.errors['required']" 
+                        class="ui pointing red basic label"
+                    >
+                        Password is required
+                    </span>
+                    <span 
+                        *ngIf="password && password?.touched && password.errors && password.errors['minLength']" 
+                        class="ui pointing red basic label"
+                    >
+                        Password should be at least 8 digits
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <span class="label">Phone Number</span>
+            <div class="field">
+                <input 
+                    formControlName="phone" 
+                    minLength="11" 
+                    maxLength="11" 
+                    required
+                    type="number" 
+                    name="phone" 
+                    id="phone" 
+                    placeholder="Phone Number" 
+                    class="form-control"
+                >
+                <div *ngIf="phone?.touched && phone?.errors" class="error-line">
+                    <span 
+                        *ngIf="phone && phone?.touched && phone.errors && phone.errors['required']" 
+                        class="ui pointing red basic label"
+                    >
+                        Phone number is required
+                    </span>
+                    <span 
+                        *ngIf="phone && phone.touched && phone.errors && (phone.errors['minLength'] || phone.errors['maxLength'])" 
+                        class="ui pointing red basic label"
+                    >
+                        Phone number should be 11 digits
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <div suiFormField>
+                <label class="label">Country</label>
+                <sui-select
+                    formControlName="country"
+                    [suiSearch]="true"
+                    suiPlaceholder="Select Country"
+                    [suiError]="country && country.touched && country.errors && country.errors['required']"
+                    [suiOptions]="countries"
+                    class="ui fluid dropdown form-control"
+                    required
+                ></sui-select>
+            </div>
+            <div *ngIf="country?.touched && country?.errors" class="error-line">
+                <span 
+                    *ngIf="country && country.touched && country.errors && country.errors['required']" 
+                    class="ui pointing red basic label"
+                >
+                    Country is required
+                </span>
+            </div>
+        </div>
+        <div class="field">
+            <div suiFormField>
+                <label class="label">Organization</label>
+                <sui-select
+                    formControlName="organization"
+                    suiPlaceholder="Select an Organization"
+                    [suiError]="organization && organization.touched && organization.errors && organization.errors['required']"
+                    [suiOptions]="organizations"
+                    class="ui fluid dropdown form-control"
+                    required
+                ></sui-select>
+            </div>
+            <div *ngIf="organization?.touched && organization?.errors" class="error-line">
+                <span 
+                    *ngIf="organization && organization.touched && organization.errors && organization.errors['required']" 
+                    class="ui pointing red basic label"
+                >
+                    Organization is required
+                </span>
+            </div>
+        </div>
+        <div class="grouped fields">
+            <span class="label">Successful?</span>
+            <div class="inline fields">
+                <div suiFormField class="form-field radio-field">
+                    <div class="ui radio checkbox">
+                        <input
+                            value="true"
+                            formControlName="successful"
+                            type="radio"
+                            required
+                        />
+                        <label>Yes</label>
+                    </div>
+                </div>
+                <div suiFormField class="form-field radio-field">
+                    <div class="ui radio checkbox">
+                        <input
+                            value="false"
+                            formControlName="successful"
+                            type="radio"
+                            required
+                        /><label>No</label>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="successful?.touched && successful?.errors" class="error-line">
+                <span 
+                    *ngIf="successful && successful.touched && successful.errors && successful.errors['required']" 
+                    class="ui pointing red basic label"
+                >
+                    Successful is required
+                </span>
+            </div>
+        </div>
+        <div class="button-line">
+            <button id="submit" [disabled]="!testForm.valid" class="ui button">Submit</button>
+        </div>
+    </form>
+</main>
