@@ -21,8 +21,10 @@ main {
     & button {
         padding: 12px 20px;
         font-size: 1.6rem;
-        background: seagreen;
+        background: #4bb543;
         color: white;
         border-radius: 6px;
+        outline: none;
+        border: none;
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
 import { ISelectOption } from 'ngx-semantic/modules/select';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification.service';
@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private notify: NotificationService,
     private countryService: CountryService,
-    private router: Router
+    private _router: Router
   ) { }
 
 
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     firstName: new FormControl("", [Validators.required]),
     lastName: new FormControl("", [Validators.required]),
     email: new FormControl("", [Validators.required, Validators.email]),
-    password: new FormControl("", [Validators.required, Validators.minLength(8)]),
+    password: new FormControl("", [Validators.required, this.ValidatePassword]),
     phone: new FormControl("", [Validators.required, Validators.minLength(11), Validators.maxLength(11)]),
     country: new FormControl("", [Validators.required]),
     organization: new FormControl("", [Validators.required]),
@@ -77,8 +77,27 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  ValidatePassword(password: AbstractControl): {[key: string]: any} | null  {
+    if (password.value && password.value.length < 8) {
+      return { 'passwordLength': true };
+    } else if (password.value && !/[\d!@#$%^&*():;{}></]/g.test(password.value)) {
+      return { 'noNumberOrSpecial': true };
+    } else if (password.value && !/[A-Z]/g.test(password.value)) {
+      return { 'noCaps': true };
+    }
+    return null;
+  }
+
   submitForm() {
-    console.log("loj")
     console.log(this.testForm.value)
+
+    if (this.testForm.value.successful === "true") {
+      this.notify.showSuccess("Success", "Form submitted successfully")
+      this._router.navigateByUrl("success")
+    } else if (this.testForm.value.successful === "false") {
+      this.notify.showError("Error", "Form submission failed!")
+      console.log("nav")
+      window.location.reload()
+    }
   }
 }

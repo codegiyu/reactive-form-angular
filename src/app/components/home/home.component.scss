@@ -11,32 +11,36 @@ main {
         border-radius: 0.5rem;
         margin: 0 auto;
 
-        // & > .field {
-        //     margin-bottom: 1.5rem;
+        & .form-group-wrap {
+            width: 100%;
+        }
+
+        & label.label {
+            color: white !important;
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+        }
+
+        & .radio-label {
+            font-size: 1.4rem;
+        }
+
+        & > .field {
             
-        //     & > .label {
-        //         color: white;
-        //         font-weight: 400;
-        //     }
+            & .form-control {
 
-        //     & .form-control {
-        //         padding-top: 8px;
-        //         padding-bottom: 8px;
+                &.ng-invalid.ng-touched {
+                    border: 1.5px solid red;
+                }
+            }
 
-        //         &.ng-invalid.ng-touched {
-        //             border: 1.5px solid red;
-        //         }
-        //     }
+            & .dropdown {
 
-        //     & .dropdown {
-        //         padding-top: 8px;
-        //         padding-bottom: 8px;
-
-        //         &.ng-invalid.ng-touched {
-        //             border: 1.5px solid red;
-        //         }
-        //     }
-        // }
+                &.ng-invalid.ng-touched {
+                    border: 1.5px solid red;
+                }
+            }
+        }
 
 
         & .button-line {
@@ -51,11 +55,7 @@ main {
                 background: #4BB543;
                 color: white;
             }
-        }
-
-        // option {
-        //     width: 100%;
-        // }    
+        }   
     }
 
     @media only screen and (max-width: 1024px) {
@@ -76,10 +76,10 @@ main {
     }
 
     @media only screen and (max-width: 475px) {
-        padding: 50px 16px;
+        padding: 0px 0px;
 
         & form {
-            width: 600px;
+            width: 100%;
             padding: 5rem 1rem 4rem;
         }
     }
